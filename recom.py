@@ -8,7 +8,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": ["https://hotel-deploy-five.vercel.app"]}})
 
 @app.route('/api/recommendations', methods=['GET'])
 def recommendations():
