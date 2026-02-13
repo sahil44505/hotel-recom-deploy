@@ -20,7 +20,7 @@ def recommendations():
     print("sending")
     try:
         # Fetch booking data
-        bookings_response = requests.get("http://localhost:3000/api/getbookingsforpy")
+        bookings_response = requests.get("hotel-deploy-five.vercel.app/api/getbookingsforpy")
         if bookings_response.status_code != 200:
             return jsonify([])
 
@@ -39,7 +39,7 @@ def recommendations():
         # Fetch hotel data for each booking title
         for title in df_bookings['title'].unique():
             search_payload = {"title": title}
-            response = requests.post("http://localhost:3000/api/searchhotelsforpy", json=search_payload)
+            response = requests.post("hotel-deploy-five.vercel.app/api/searchhotelsforpy", json=search_payload)
 
             if response.status_code == 200:
                 hotels_data = response.json()
